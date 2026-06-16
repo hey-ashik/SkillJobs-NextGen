@@ -5,19 +5,19 @@ const testimonials = [
     quote: "Being a NextGen Campus Ambassador at my university completely transformed my confidence. I managed events of over 500 students, and the experience helped me secure my dream internship before graduating.",
     name: "Sadia Rahman",
     role: "Campus Ambassador, DU",
-    avatarColor: "var(--color-royal-blue-2)"
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80"
   },
   {
     quote: "NextGen career workshops gave me practical knowledge that my textbooks couldn't provide. The CV review sessions helped me restructure my portfolio, which got me noticed by major tech companies.",
     name: "Tanvir Ahmed",
     role: "Software Engineering Student",
-    avatarColor: "var(--color-medium-purple)"
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&h=120&q=80"
   },
   {
     quote: "As a mentor, I have watched students evolve from shy participants into confident presenters and leaders. Skill Jobs NextGen bridges the critical skills gap that companies look for in fresh graduates.",
     name: "Farhana Islam",
     role: "HR Director & Mentor",
-    avatarColor: "var(--color-deep-pink)"
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80"
   }
 ];
 
@@ -120,12 +120,16 @@ export default function TestimonialsSection() {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #ffffff;
-          font-weight: 800;
-          font-size: 16px;
+          overflow: hidden;
+          background: #e2e8f0;
+          border: 1.5px solid #ffffff;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .avatar img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .meta {
@@ -170,8 +174,8 @@ export default function TestimonialsSection() {
               <p className="quote-text">"{t.quote}"</p>
               
               <div className="profile-box">
-                <div className="avatar" style={{ backgroundColor: t.avatarColor }}>
-                  {t.name[0]}
+                <div className="avatar">
+                  <img src={t.avatar} alt={t.name} />
                 </div>
                 <div className="meta">
                   <span className="name">{t.name}</span>

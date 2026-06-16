@@ -202,8 +202,8 @@ export default function Hero({ onOpenAuth }) {
         </div>
         
         <h1 className="hero-title">
-          আপনার ক্যারিয়ার শুরু <br />
-          করুন <span>নেক্সটজেন</span>-এর সাথে
+          Kickstart Your Career <br />
+          With <span>NextGen</span>
         </h1>
         
         <p className="hero-subtitle">

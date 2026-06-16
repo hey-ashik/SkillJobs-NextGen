@@ -7,7 +7,7 @@ const blogsData = [
     excerpt: 'Discover the critical real-world skills, from communication to project management, that recruiters prioritize today.',
     date: 'Jun 12, 2026',
     readTime: '5 min read',
-    image: 'fa-solid fa-lightbulb'
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80'
   },
   {
     category: 'Resume & Interviews',
@@ -15,7 +15,7 @@ const blogsData = [
     excerpt: 'Learn the exact resume layouts, keyword strategies, and achievements formats that pass ATS screening filters.',
     date: 'May 28, 2026',
     readTime: '4 min read',
-    image: 'fa-solid fa-file-lines'
+    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80'
   },
   {
     category: 'Leadership',
@@ -23,7 +23,7 @@ const blogsData = [
     excerpt: 'Corporate hiring managers reveal why managing a student club or being a Campus Ambassador outweighs a perfect GPA.',
     date: 'May 15, 2026',
     readTime: '6 min read',
-    image: 'fa-solid fa-crown'
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80'
   }
 ];
 
@@ -98,13 +98,20 @@ export default function BlogsSection() {
 
         .blog-cover {
           height: 180px;
-          background: var(--gradient-linear-6);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 48px;
-          color: var(--color-royal-blue-1);
+          overflow: hidden;
+          position: relative;
           border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .blog-cover img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s;
+        }
+
+        .blog-card:hover .blog-cover img {
+          transform: scale(1.05);
         }
 
         .blog-content {
@@ -184,9 +191,9 @@ export default function BlogsSection() {
           {blogsData.map((blog, idx) => (
             <div key={idx} className="blog-card">
               <div className="blog-cover">
-                <i className={blog.image}></i>
+                <img src={blog.image} alt={blog.title} />
               </div>
-              
+
               <div className="blog-content">
                 <div className="blog-meta">
                   <span className="blog-category">{blog.category}</span>
