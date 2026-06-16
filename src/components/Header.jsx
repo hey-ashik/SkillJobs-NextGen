@@ -1,11 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import Logo from './Logo';
 
 export default function Header({ onOpenAuth }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,8 +25,16 @@ export default function Header({ onOpenAuth }) {
   }, []);
 
   const handleNavClick = (e, targetId) => {
-    e.preventDefault();
     setMobileMenuOpen(false);
+    
+    // If clicking a section but currently on another page, navigate to homepage section
+    if (pathname !== '/') {
+      // Allow default link navigation to go to /#targetId
+      return;
+    }
+
+    // Otherwise, prevent default and scroll smoothly
+    e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
       const offset = 100; // Offset for sticky header
@@ -34,6 +47,9 @@ export default function Header({ onOpenAuth }) {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      
+      // Update browser history hash without jump
+      window.history.pushState(null, '', `#${targetId}`);
     }
   };
 
@@ -83,21 +99,22 @@ export default function Header({ onOpenAuth }) {
           padding: 0;
         }
 
-        .nav-link {
-          font-family: var(--font-inter);
+        :global(.nav-link) {
+          font-family: var(--font-inter), sans-serif;
           font-size: 15px;
           font-weight: 600;
-          color: var(--color-dark-slate-gray-1);
+          color: var(--color-dark-slate-gray-1) !important;
           transition: color 0.2s;
           position: relative;
           cursor: pointer;
+          text-decoration: none;
         }
 
-        .nav-link:hover {
-          color: var(--color-royal-blue-1);
+        :global(.nav-link:hover) {
+          color: var(--color-royal-blue-1) !important;
         }
 
-        .nav-link::after {
+        :global(.nav-link::after) {
           content: '';
           position: absolute;
           bottom: -4px;
@@ -110,7 +127,7 @@ export default function Header({ onOpenAuth }) {
           transition: transform 0.25s ease;
         }
 
-        .nav-link:hover::after {
+        :global(.nav-link:hover::after) {
           transform: translateX(-50%) scaleX(1);
         }
 
@@ -192,14 +209,15 @@ export default function Header({ onOpenAuth }) {
           padding: 0;
         }
 
-        .mobile-nav-link {
+        :global(.mobile-nav-link) {
           font-size: 20px;
           font-weight: 700;
-          color: var(--color-dark-slate-gray-1);
+          color: var(--color-dark-slate-gray-1) !important;
           padding: 10px 0;
           border-bottom: 1px solid var(--color-white-smoke);
           cursor: pointer;
           display: block;
+          text-decoration: none;
         }
 
         @media (max-width: 900px) {
@@ -219,36 +237,36 @@ export default function Header({ onOpenAuth }) {
 
       <header className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
         {/* LOGO */}
-        <a href="#home" onClick={(e) => handleNavClick(e, 'home')} style={{ display: 'flex', textDecoration: 'none' }}>
+        <Link href="/#home" onClick={(e) => handleNavClick(e, 'home')} style={{ display: 'flex', textDecoration: 'none' }}>
           <Logo />
-        </a>
+        </Link>
 
         {/* DESKTOP NAV */}
         <ul className="nav-links">
           <li>
-            <a className="nav-link" onClick={(e) => handleNavClick(e, 'home')}>
+            <Link href="/#home" className="nav-link" onClick={(e) => handleNavClick(e, 'home')}>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-link" onClick={(e) => handleNavClick(e, 'ambassador')}>
+            <Link href="/#ambassador" className="nav-link" onClick={(e) => handleNavClick(e, 'ambassador')}>
               Ambassador
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-link" onClick={(e) => handleNavClick(e, 'events')}>
+            <Link href="/#events" className="nav-link" onClick={(e) => handleNavClick(e, 'events')}>
               Event
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-link" onClick={(e) => handleNavClick(e, 'blogs')}>
+            <Link href="/blogs" className="nav-link">
               Blogs
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-link" onClick={(e) => handleNavClick(e, 'about')}>
+            <Link href="/#about" className="nav-link" onClick={(e) => handleNavClick(e, 'about')}>
               About
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -274,29 +292,29 @@ export default function Header({ onOpenAuth }) {
       <div className={`mobile-menu-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <ul className="mobile-nav-links">
           <li>
-            <a className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'home')}>
+            <Link href="/#home" className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'home')}>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'ambassador')}>
+            <Link href="/#ambassador" className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'ambassador')}>
               Ambassador
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'events')}>
+            <Link href="/#events" className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'events')}>
               Event
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'blogs')}>
+            <Link href="/blogs" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
               Blogs
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'about')}>
+            <Link href="/#about" className="mobile-nav-link" onClick={(e) => handleNavClick(e, 'about')}>
               About
-            </a>
+            </Link>
           </li>
         </ul>
         <button

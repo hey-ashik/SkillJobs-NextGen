@@ -1,33 +1,13 @@
-import React from 'react';
+'use client';
 
-const blogsData = [
-  {
-    category: 'Career Growth',
-    title: 'Top 10 Employability Skills Needed in 2026',
-    excerpt: 'Discover the critical real-world skills, from communication to project management, that recruiters prioritize today.',
-    date: 'Jun 12, 2026',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    category: 'Resume & Interviews',
-    title: 'How to Build a High-Conversion CV as a Student',
-    excerpt: 'Learn the exact resume layouts, keyword strategies, and achievements formats that pass ATS screening filters.',
-    date: 'May 28, 2026',
-    readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    category: 'Leadership',
-    title: 'Why Campus Leadership Matters for Corporate Jobs',
-    excerpt: 'Corporate hiring managers reveal why managing a student club or being a Campus Ambassador outweighs a perfect GPA.',
-    date: 'May 15, 2026',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80'
-  }
-];
+import React from 'react';
+import Link from 'next/link';
+import { blogsData } from '../data/blogs';
 
 export default function BlogsSection() {
+  // Show the first 3 blogs on the landing page
+  const featuredBlogs = blogsData.slice(0, 3);
+
   return (
     <section id="blogs" className="blogs-section grid-overlay">
       <style jsx>{`
@@ -150,7 +130,7 @@ export default function BlogsSection() {
           flex-grow: 1;
         }
 
-        .read-btn {
+        .read-link {
           font-size: 14px;
           font-weight: 700;
           color: var(--color-dark-gray-1);
@@ -159,9 +139,11 @@ export default function BlogsSection() {
           align-items: center;
           gap: 6px;
           margin-top: 10px;
+          text-decoration: none;
+          transition: color 0.2s;
         }
 
-        .read-btn:hover {
+        .read-link:hover {
           color: var(--color-royal-blue-1);
         }
 
@@ -188,7 +170,7 @@ export default function BlogsSection() {
         </div>
 
         <div className="blogs-grid">
-          {blogsData.map((blog, idx) => (
+          {featuredBlogs.map((blog, idx) => (
             <div key={idx} className="blog-card">
               <div className="blog-cover">
                 <img src={blog.image} alt={blog.title} />
@@ -204,12 +186,12 @@ export default function BlogsSection() {
                 
                 <p className="blog-excerpt">{blog.excerpt}</p>
                 
-                <button className="read-btn" onClick={() => alert('Simulated: Full article is available in production.')}>
+                <Link href={`/blogs/${blog.slug}`} className="read-link">
                   Read Article
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
           ))}
