@@ -69,6 +69,7 @@ export default function Hero({ onOpenAuth }) {
           flex-direction: column;
           align-items: center;
           gap: 28px;
+          width: 100%;
         }
 
         .badge {
@@ -145,6 +146,9 @@ export default function Hero({ onOpenAuth }) {
           align-items: center;
           gap: 10px;
           box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+          cursor: pointer;
+          border: none;
+          transition: all 0.25s ease;
         }
 
         .primary-cta:hover {
@@ -161,12 +165,151 @@ export default function Hero({ onOpenAuth }) {
           border-radius: 9999px;
           font-size: 16px;
           font-weight: 700;
+          cursor: pointer;
+          transition: all 0.25s ease;
         }
 
         .secondary-cta:hover {
           transform: translateY(-2px);
           background: #ffffff;
           border-color: var(--color-dark-gray);
+        }
+
+        /* Ratings block style */
+        .rating-row {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-top: 10px;
+          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+          opacity: 0;
+        }
+
+        .avatar-group {
+          display: flex;
+          align-items: center;
+        }
+
+        .rating-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 2px solid #ffffff;
+          margin-left: -8px;
+          object-fit: cover;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .rating-avatar:first-child {
+          margin-left: 0;
+        }
+
+        .avatar-plus {
+          background: #0f172a;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
+          font-weight: 800;
+          font-family: var(--font-plus-jakarta-sans), sans-serif;
+        }
+
+        .rating-stats-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+          line-height: 1.1;
+        }
+
+        .rating-number {
+          font-family: var(--font-plus-jakarta-sans), sans-serif;
+          font-weight: 800;
+          color: #0f172a;
+          font-size: 14px;
+        }
+
+        .rating-label {
+          font-size: 11px;
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        .rating-separator {
+          width: 1px;
+          height: 24px;
+          background: #cbd5e1;
+        }
+
+        .stars-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+          line-height: 1.1;
+        }
+
+        .stars {
+          color: #fbbf24;
+          font-size: 10px;
+          display: flex;
+          gap: 2px;
+        }
+
+        .stars-label {
+          font-size: 11px;
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        /* Stats Card Styles */
+        .stats-card {
+          margin-top: 36px;
+          background: #ffffff;
+          border: 1px solid rgba(226, 232, 240, 0.8);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+          border-radius: 20px;
+          padding: 26px 40px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          max-width: 900px;
+          z-index: 10;
+          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+          opacity: 0;
+        }
+
+        .stat-item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .stat-number {
+          font-family: var(--font-plus-jakarta-sans), sans-serif;
+          font-size: 32px;
+          font-weight: 900;
+          color: #0f172a;
+          line-height: 1.1;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          font-weight: 700;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          text-align: center;
+        }
+
+        .stat-divider {
+          width: 1px;
+          height: 40px;
+          background: #e2e8f0;
         }
 
         @media (max-width: 768px) {
@@ -189,6 +332,29 @@ export default function Hero({ onOpenAuth }) {
             width: 100%;
             justify-content: center;
             padding: 14px 28px;
+          }
+          .rating-row {
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+          }
+          .rating-separator {
+            display: none;
+          }
+          .rating-stats-info, .stars-group {
+            align-items: center;
+            text-align: center;
+          }
+          .stats-card {
+            flex-direction: column;
+            gap: 20px;
+            padding: 24px;
+            margin-top: 40px;
+          }
+          .stat-divider {
+            width: 100%;
+            height: 1px;
+            background: #e2e8f0;
           }
         }
       `}</style>
@@ -221,6 +387,54 @@ export default function Hero({ onOpenAuth }) {
           <button className="secondary-cta" onClick={handleExploreClick}>
             Explore Benefits
           </button>
+        </div>
+
+        {/* Overlapping avatar group & rating stats */}
+        <div className="rating-row">
+          <div className="avatar-group">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Student 1" className="rating-avatar" />
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Student 2" className="rating-avatar" />
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" alt="Student 3" className="rating-avatar" />
+            <div className="rating-avatar avatar-plus">+</div>
+          </div>
+          <div className="rating-stats-info">
+            <span className="rating-number">30,000+ Students</span>
+            <span className="rating-label">Active Campus Network</span>
+          </div>
+          <div className="rating-separator"></div>
+          <div className="stars-group">
+            <div className="stars">
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+            </div>
+            <span className="stars-label">4.9/5 Student Rating</span>
+          </div>
+        </div>
+
+        {/* Light theme stats grid container */}
+        <div className="stats-card">
+          <div className="stat-item">
+            <span className="stat-number">25</span>
+            <span className="stat-label">Campus Programs</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <span className="stat-number">120+</span>
+            <span className="stat-label">Batches Completed</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <span className="stat-number">20,000+</span>
+            <span className="stat-label">Successful Students</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <span className="stat-number">100+</span>
+            <span className="stat-label">Expert Mentors</span>
+          </div>
         </div>
       </div>
     </section>

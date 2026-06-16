@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import ValueSnapshot from '../components/ValueSnapshot';
+import TrustSection from '../components/TrustSection';
 import AboutSection from '../components/AboutSection';
 import ProgramsSection from '../components/ProgramsSection';
-import AchievementsSection from '../components/AchievementsSection';
 import BlogsSection from '../components/BlogsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import CTASection from '../components/CTASection';
@@ -31,16 +31,16 @@ export default function Home() {
         {/* 2. Quick Value Snapshot */}
         <ValueSnapshot />
 
-        {/* 3. What is NextGen? & Vision Section */}
-        <AboutSection />
+        {/* 3. Trust Grid Section */}
+        <TrustSection />
+
+        {/* 4. What is NextGen? & Vision Section */}
+        <AboutSection onOpenAuth={openAuth} />
 
         {/* 4. Programs & Benefits Section */}
         <ProgramsSection onOpenAuth={openAuth} />
 
-        {/* 5. Achievements / Impact Section */}
-        <AchievementsSection />
-
-        {/* 6. Blogs & Career Insights Section */}
+        {/* 5. Blogs & Career Insights Section */}
         <BlogsSection />
 
         {/* 7. Testimonials Section */}

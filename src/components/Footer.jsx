@@ -197,6 +197,7 @@ export default function Footer() {
         
         <div className="bottom-bar">
           <span>&copy; {currentYear} Skill Jobs NextGen. All rights reserved.</span>
+          <span style={{ fontSize: '13px', fontWeight: '500' }}>Developed by Nowshin Tasnim (Sinthia)</span>
           <span>NextGen</span>
         </div>
       </div>
