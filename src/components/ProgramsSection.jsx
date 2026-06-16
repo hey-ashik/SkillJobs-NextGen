@@ -251,19 +251,20 @@ export default function ProgramsSection({ onOpenAuth }) {
 
         .apply-btn {
           align-self: flex-start;
-          background: var(--gradient-linear-1);
+          background: #0f172a;
           color: #ffffff;
           padding: 14px 28px;
           border-radius: 9999px;
           font-weight: 700;
           font-size: 15px;
-          box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+          box-shadow: 0 8px 16px rgba(15, 23, 42, 0.15);
           margin-top: 10px;
         }
 
         .apply-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 24px rgba(79, 70, 229, 0.3);
+          box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
+          background: #1e293b;
         }
 
         @media (max-width: 1024px) {

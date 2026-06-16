@@ -1,8 +1,15 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Hero({ onOpenAuth }) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 1700);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleExploreClick = (e) => {
     e.preventDefault();
     const element = document.getElementById('about');
@@ -72,6 +79,18 @@ export default function Hero({ onOpenAuth }) {
           width: 100%;
         }
 
+        /* Staggered reveal */
+        .hero-item {
+          opacity: 0;
+          transform: translateY(24px);
+          transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-item.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
         .badge {
           display: inline-flex;
           align-items: center;
@@ -85,7 +104,6 @@ export default function Hero({ onOpenAuth }) {
           font-size: 13px;
           font-weight: 700;
           color: var(--color-dark-slate-gray-1);
-          animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .badge-dot {
@@ -104,8 +122,6 @@ export default function Hero({ onOpenAuth }) {
           line-height: 1.15;
           letter-spacing: -1.5px;
           color: var(--color-black-1);
-          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-          opacity: 0;
         }
 
         .hero-title span {
@@ -122,8 +138,6 @@ export default function Hero({ onOpenAuth }) {
           color: var(--color-dark-slate-gray-1);
           max-width: 650px;
           margin: 0 auto;
-          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-          opacity: 0;
         }
 
         .ctas-container {
@@ -131,8 +145,6 @@ export default function Hero({ onOpenAuth }) {
           align-items: center;
           gap: 16px;
           margin-top: 10px;
-          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-          opacity: 0;
         }
 
         .primary-cta {
@@ -181,8 +193,6 @@ export default function Hero({ onOpenAuth }) {
           align-items: center;
           gap: 16px;
           margin-top: 10px;
-          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-          opacity: 0;
         }
 
         .avatar-group {
@@ -277,8 +287,6 @@ export default function Hero({ onOpenAuth }) {
           width: 100%;
           max-width: 900px;
           z-index: 10;
-          animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-          opacity: 0;
         }
 
         .stat-item {
@@ -360,37 +368,39 @@ export default function Hero({ onOpenAuth }) {
       `}</style>
       <div className="ambient-light-1"></div>
       <div className="ambient-light-2"></div>
-      
+
       <div className="hero-content">
-        <div className="badge">
-          <span className="badge-dot"></span>
-          NextGen
+        <div className={`hero-item ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0s' }}>
+          <div className="badge">
+            <span className="badge-dot"></span>
+            NextGen
+          </div>
         </div>
-        
-        <h1 className="hero-title">
+
+        <h1 className={`hero-item hero-title ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0.12s' }}>
           Kickstart Your Career <br />
           With <span>NextGen</span>
         </h1>
-        
-        <p className="hero-subtitle">
+
+        <p className={`hero-item hero-subtitle ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0.24s' }}>
           Skill Jobs NextGen is the official student community and campus leadership platform of Skill Jobs. We build leadership skills, career readiness, networking, and employability for future leaders.
         </p>
-        
-        <div className="ctas-container">
+
+        <div className={`hero-item ctas-container ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0.36s' }}>
           <button className="primary-cta" onClick={onOpenAuth}>
             Join NextGen
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          
+
           <button className="secondary-cta" onClick={handleExploreClick}>
             Explore Benefits
           </button>
         </div>
 
         {/* Overlapping avatar group & rating stats */}
-        <div className="rating-row">
+        <div className={`hero-item rating-row ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0.48s' }}>
           <div className="avatar-group">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Student 1" className="rating-avatar" />
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Student 2" className="rating-avatar" />
@@ -415,7 +425,7 @@ export default function Hero({ onOpenAuth }) {
         </div>
 
         {/* Light theme stats grid container */}
-        <div className="stats-card">
+        <div className={`hero-item stats-card ${loaded ? 'show' : ''}`} style={{ transitionDelay: '0.6s' }}>
           <div className="stat-item">
             <span className="stat-number">25</span>
             <span className="stat-label">Campus Programs</span>

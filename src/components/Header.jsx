@@ -132,21 +132,22 @@ export default function Header({ onOpenAuth }) {
         }
 
         .cta-btn {
-          background: var(--gradient-linear-1);
-          color: var(--color-white);
+          background: #0f172a;
+          color: #ffffff;
           padding: 10px 22px;
           border: none;
           border-radius: 9999px; /* Pills button */
           font-size: 14px;
           font-weight: 700;
-          box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
           cursor: pointer;
           transition: all 0.2s;
         }
 
         .cta-btn:hover {
           transform: translateY(-1px);
-          box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+          box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+          background: #1e293b;
         }
 
         .hamburger-btn {

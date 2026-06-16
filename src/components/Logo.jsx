@@ -61,9 +61,9 @@ export default function Logo({ light = false }) {
           style={{
             fontSize: '16px',
             fontWeight: '900',
-            fontFamily: 'var(--font-plus-jakarta-sans), sans-serif',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
             letterSpacing: '-0.3px',
-            color: light ? '#ffffff' : 'var(--color-royal-blue-1)',
+            color: light ? '#ffffff' : '#0f172a',
             lineHeight: '1',
           }}
         >

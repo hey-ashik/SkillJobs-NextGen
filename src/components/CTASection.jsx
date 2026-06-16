@@ -15,7 +15,7 @@ export default function CTASection({ onOpenAuth }) {
         .cta-banner {
           width: 100%;
           max-width: 1100px;
-          background: var(--gradient-linear-9);
+          background: #0f172a;
           border-radius: 28px;
           padding: 80px 40px;
           text-align: center;
@@ -24,18 +24,18 @@ export default function CTASection({ onOpenAuth }) {
           flex-direction: column;
           align-items: center;
           gap: 24px;
-          box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.3);
+          box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.4);
           position: relative;
           overflow: hidden;
         }
 
-        /* Abstract glowing blobs for premium design */
+        /* Subtle ambient accents */
         .glow-blob {
           position: absolute;
           width: 300px;
           height: 300px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.03);
           filter: blur(50px);
           pointer-events: none;
         }
@@ -58,6 +58,7 @@ export default function CTASection({ onOpenAuth }) {
           max-width: 700px;
           position: relative;
           z-index: 10;
+          color: #ffffff;
         }
 
         .cta-desc {
@@ -65,27 +66,27 @@ export default function CTASection({ onOpenAuth }) {
           font-size: 17px;
           line-height: 1.6;
           max-width: 550px;
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           position: relative;
           z-index: 10;
         }
 
         .cta-btn {
           background: #ffffff;
-          color: var(--color-royal-blue-1);
+          color: #0f172a;
           padding: 18px 48px;
           border-radius: 9999px;
           font-size: 16px;
           font-weight: 800;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
           position: relative;
           z-index: 10;
         }
 
         .cta-btn:hover {
           transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-          color: var(--color-blue-violet-1);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+          background: #f1f5f9;
         }
 
         @media (max-width: 768px) {
