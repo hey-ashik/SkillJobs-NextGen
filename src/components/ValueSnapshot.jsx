@@ -68,6 +68,7 @@ const valueItems = [
 export default function ValueSnapshot() {
   const sectionRef = useRef(null);
   const [translateX, setTranslateX] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,8 +94,13 @@ export default function ValueSnapshot() {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Trigger once on mount
 
+    const timer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 50);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -118,6 +124,9 @@ export default function ValueSnapshot() {
           padding: 10px 40px;
           width: max-content;
           will-change: transform;
+        }
+
+        .snapshot-container.initialized {
           transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -184,7 +193,7 @@ export default function ValueSnapshot() {
         }
       `}</style>
       <div 
-        className="snapshot-container"
+        className={`snapshot-container ${isInitialized ? 'initialized' : 'no-transition'}`}
         style={{ transform: `translateX(${translateX}px)` }}
       >
         {valueItems.map((item, idx) => (
